@@ -1,0 +1,68 @@
+buildscript {
+    ext.versions = [
+            'compileSdk'            : 30,
+            'minSdk'                : 24,
+            'targetSdk'             : 30,
+            'code'                  : 1,
+            'apache'                : '3.10',
+            'appcompat'             : '1.2.0',
+            'biometricPrompt'       : '1.1.0',
+            'browser'               : '1.3.0',
+            'constraint'            : '2.0.4',
+            'crashlytics'           : '2.2.1',
+            'detekt'                : '1.9.0',
+            'exifSupport'           : '1.3.2',
+            'firebaseAnalytics'     : '18.0.2',
+            'firebaseCrashlytics'   : '17.4.1',
+            'flippableStackView'    : '1.0.0',
+            'flexbox'               : '2.0.1',
+            'glide'                 : '4.11.0',
+            'googleServices'        : '4.3.3',
+            'gradle'                : '4.1.3',
+            'gson'                  : '2.8.6',
+            'junit'                 : '4.13',
+            'kotlin'                : '1.4.31',
+            'ktlint'                : '0.36.0',
+            'legacySupport'         : '1.0.0',
+            'lifecycle'             : '2.2.0',
+            'location'              : '18.0.0',
+            'lottie'                : '3.4.1',
+            'maps'                  : '17.0.0',
+            'material'              : '1.3.0',
+            'materialDateTimePicker': '4.2.3',
+            'media'                 : '1.2.1',
+            'mpandroidchart'        : '1.0.0',
+            'multidex'              : '2.0.1',
+            'percentLayout'         : '1.0.0',
+            'rxKotlin'              : '3.0.1',
+            'rxJava'                : '3.0.10',
+            'rxAndroid'             : '3.0.0',
+            'lifecycleRuntime'      : '2.3.1',
+            'shimmer'               : '0.5.0',
+            'annotation'            : '1.2.0',
+            'vision'                : '20.1.3'
+    ]
+
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath "com.google.firebase:firebase-crashlytics-gradle:$versions.crashlytics"
+        classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:$versions.detekt"
+        classpath "com.google.gms:google-services:$versions.googleServices"
+        classpath "com.android.tools.build:gradle:$versions.gradle"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
