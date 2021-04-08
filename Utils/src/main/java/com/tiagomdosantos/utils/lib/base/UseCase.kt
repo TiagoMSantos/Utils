@@ -3,10 +3,10 @@ package com.tiagomdosantos.utils.lib.base
 import com.tiagomdosantos.utils.lib.ApiError
 import com.tiagomdosantos.utils.lib.CoroutineContextProvider
 import com.tiagomdosantos.utils.lib.traceErrorException
-import java.util.concurrent.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.concurrent.CancellationException
 
 abstract class UseCase<Type, in Params>(private val coroutineContextProvider: CoroutineContextProvider) where Type : Any {
 

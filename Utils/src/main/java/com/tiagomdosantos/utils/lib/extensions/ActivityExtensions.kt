@@ -104,10 +104,12 @@ fun AppCompatActivity.navigateToActivityAndClearTaskWithParams(
     targetActivity: Class<*>,
     extras: Bundle
 ) {
-    startActivity(Intent(this, targetActivity).apply {
-        putExtras(extras)
-        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-    })
+    startActivity(
+        Intent(this, targetActivity).apply {
+            putExtras(extras)
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        }
+    )
     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     onFinish(hasToFinish)
 }
@@ -221,10 +223,12 @@ fun AppCompatActivity.goToActivity(
     @AnimRes enterAnim: Int,
     @AnimRes exitAnim: Int
 ) {
-    startActivity(Intent(this, targetActivity).apply {
-        addFlags(flags)
-        putExtras(extras)
-    })
+    startActivity(
+        Intent(this, targetActivity).apply {
+            addFlags(flags)
+            putExtras(extras)
+        }
+    )
     onFinish(hasToFinish)
     overridePendingTransition(enterAnim, exitAnim)
 }
@@ -236,10 +240,12 @@ fun AppCompatActivity.goToActivityClearTaskWithParamsWithAnimation(
     @AnimRes enterAnim: Int,
     @AnimRes exitAnim: Int
 ) {
-    startActivity(Intent(this, targetActivity).apply {
-        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-        putExtras(extras)
-    })
+    startActivity(
+        Intent(this, targetActivity).apply {
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            putExtras(extras)
+        }
+    )
     onFinish(hasToFinish)
     overridePendingTransition(enterAnim, exitAnim)
 }
@@ -250,10 +256,12 @@ fun AppCompatActivity.goToActivityWithFlagsWithParams(
     flags: Int,
     extras: Bundle
 ) {
-    startActivity(Intent(this, targetActivity).apply {
-        addFlags(flags)
-        putExtras(extras)
-    })
+    startActivity(
+        Intent(this, targetActivity).apply {
+            addFlags(flags)
+            putExtras(extras)
+        }
+    )
     overridePendingTransition(R.anim.fade_in, R.anim.fade_out)
     onFinish(hasToFinish)
 }
@@ -265,7 +273,8 @@ fun AppCompatActivity.goToSettings() {
             Uri.fromParts("package", packageName, null)
         ).apply {
             addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        })
+        }
+    )
 }
 
 fun AppCompatActivity.goToExternalBrowser(url: String, @ColorRes toolbarColor: Int) {
