@@ -1,5 +1,7 @@
 package com.tiagomdosantos.utils.lib.extensions
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -7,14 +9,15 @@ import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
 import android.provider.Settings
 import android.view.View
+import android.view.WindowInsets
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.AnimRes
 import androidx.annotation.ColorRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -27,6 +30,26 @@ fun AppCompatActivity.bindingContentView(layout: Int): ViewDataBinding {
 fun <T> AppCompatActivity.bindingContentView(layout: Int): T {
     return DataBindingUtil.setContentView<ViewDataBinding>(this, layout)
         .also { it.lifecycleOwner = this } as T
+}
+
+fun Activity.setFullScreen() {
+    window.insetsController?.show(WindowInsets.Type.statusBars())
+}
+
+fun Activity.showToolbar() {
+    actionBar?.show()
+}
+
+fun Activity.hideToolbar() {
+    actionBar?.hide()
+}
+
+fun AppCompatActivity.showToolbar() {
+    supportActionBar?.show()
+}
+
+fun AppCompatActivity.hideToolbar() {
+    supportActionBar?.hide()
 }
 
 fun AppCompatActivity.showKeyboard(view: View) {
@@ -86,17 +109,6 @@ fun AppCompatActivity.hasSystemFeature(feature: String): Boolean {
 fun AppCompatActivity.navigateToActivity(hasToFinish: Boolean, targetActivity: Class<*>) {
     startActivity(Intent(this, targetActivity))
     onFinish(hasToFinish)
-}
-
-fun AppCompatActivity.navigateToActivityWithAnimation(
-    hasToFinish: Boolean,
-    targetActivity: Class<*>,
-    @AnimRes enterAnim: Int,
-    @AnimRes exitAnim: Int
-) {
-    startActivity(Intent(this, targetActivity))
-    onFinish(hasToFinish)
-    overridePendingTransition(enterAnim, exitAnim)
 }
 
 fun AppCompatActivity.navigateToActivityAndClearTaskWithParams(
@@ -177,17 +189,24 @@ fun AppCompatActivity.navigateToActivity(
 
 fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
+    clearStack: Boolean = false,
     targetActivity: Class<*>,
     @AnimRes enterAnim: Int,
     @AnimRes exitAnim: Int
 ) {
-    navigateToActivity(
-        hasToFinish,
-        targetActivity,
-        Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK,
-        enterAnim,
-        exitAnim
-    )
+    takeIf { clearStack }?.run {
+        navigateToActivity(
+            hasToFinish,
+            targetActivity,
+            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK,
+            enterAnim,
+            exitAnim
+        )
+    } ?: run {
+        startActivity(Intent(this, targetActivity))
+        onFinish(hasToFinish)
+        overridePendingTransition(enterAnim, exitAnim)
+    }
 }
 
 fun AppCompatActivity.navigateToActivity(
@@ -297,6 +316,15 @@ private fun AppCompatActivity.onFinish(hasToFinish: Boolean) {
     }
 }
 
-fun <R> (() -> R).postDelay(delay: Number = 250) {
-    Handler().postDelayed({ invoke() }, delay.toLong())
+fun AppCompatActivity.callTo(phoneNumber: String, requestCode: Int) {
+    val intent = Intent(Intent.ACTION_CALL)
+
+    intent.data = Uri.parse("tel:$phoneNumber")
+    if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        val permissions = arrayOfNulls<String>(1)
+        permissions[0] = Manifest.permission.CALL_PHONE
+        requestPermissions(permissions, requestCode)
+    } else {
+        startActivity(intent)
+    }
 }
