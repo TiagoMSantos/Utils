@@ -114,4 +114,7 @@ dependencies {
     /* Retrofit2 */
     api "com.squareup.retrofit2:retrofit:$versions.retrofit"
 
+    /* Preferences */
+    api "androidx.preference:preference-ktx:$versions.preferences"
+
 }

@@ -12,3 +12,11 @@ fun isNumeric(charSequence: CharSequence): Boolean {
     }
     return true
 }
+
+fun String.containsDigit(): Boolean {
+    return matches(Regex(".*[0-9].*"))
+}
+
+fun String.isAlphanumeric(): Boolean {
+    return matches(Regex("[a-zA-Z0-9]*"))
+}

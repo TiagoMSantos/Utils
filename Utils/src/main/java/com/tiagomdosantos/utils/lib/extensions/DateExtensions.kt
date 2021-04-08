@@ -6,6 +6,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 fun getLocaleBR() = Locale("pt", "BR")
+fun getLocaleUS() = Locale.US
 fun getTimeZoneBR(): TimeZone = TimeZone.getTimeZone("America/Sao_Paulo")
 
 const val BRAZILIAN_DATE_FORMAT = "dd/MM/yyyy"

@@ -34,6 +34,7 @@ buildscript {
             'mpandroidchart'        : '1.0.0',
             'multidex'              : '2.0.1',
             'percentLayout'         : '1.0.0',
+            'preferences'           : '1.1.1',
             'retrofit'              : '2.9.0',
             'rxKotlin'              : '3.0.1',
             'rxJava'                : '3.0.10',
