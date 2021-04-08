@@ -1,4 +1,4 @@
-package com.tiagomdosantos.utils.lib
+package com.tiagomdosantos.utils.lib.permissions
 
 import android.content.Context
 import android.content.SharedPreferences

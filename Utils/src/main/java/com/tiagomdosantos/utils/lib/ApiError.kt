@@ -1,8 +1,8 @@
 package com.tiagomdosantos.utils.lib
 
+import retrofit2.HttpException
 import java.io.IOException
 import java.net.SocketTimeoutException
-import retrofit2.HttpException
 
 data class ApiError(var code: Int, var status: ErrorStatus) {
     enum class ErrorStatus {

@@ -1,4 +1,4 @@
-package com.tiagomdosantos.utils.lib
+package com.tiagomdosantos.utils.lib.events
 
 import android.util.Log
 import androidx.annotation.MainThread

@@ -1,4 +1,4 @@
-package com.tiagomdosantos.utils.lib
+package com.tiagomdosantos.utils.lib.permissions
 
 import android.app.Activity
 import android.content.Intent

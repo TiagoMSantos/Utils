@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.tiagomdosantos.utils.lib.EntityPermission
-import com.tiagomdosantos.utils.lib.PermissionsManager
+import com.tiagomdosantos.utils.lib.permissions.EntityPermission
+import com.tiagomdosantos.utils.lib.permissions.PermissionsManager
 
 class PermissionsActivity : AppCompatActivity(), ActivityCompat.OnRequestPermissionsResultCallback {
 
