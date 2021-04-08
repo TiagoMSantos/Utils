@@ -112,7 +112,7 @@ fun AppCompatActivity.navigateToActivityAndClearTaskWithParams(
     onFinish(hasToFinish)
 }
 
-fun AppCompatActivity.navigateToActivityWithParamsAndAnimation(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     extras: Bundle,
@@ -124,7 +124,7 @@ fun AppCompatActivity.navigateToActivityWithParamsAndAnimation(
     overridePendingTransition(enterAnim, exitAnim)
 }
 
-fun AppCompatActivity.navigateToActivityWithResultWithParams(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     extras: Bundle,
@@ -134,7 +134,7 @@ fun AppCompatActivity.navigateToActivityWithResultWithParams(
     onFinish(hasToFinish)
 }
 
-fun AppCompatActivity.gnavigateToActivityResultWithParamsAndAnimation(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     extras: Bundle,
@@ -152,7 +152,7 @@ fun AppCompatActivity.navigateToActivityWithParams(
     targetActivity: Class<*>,
     extras: Bundle
 ) {
-    navigateToActivityWithParamsAndAnimation(
+    navigateToActivity(
         hasToFinish,
         targetActivity,
         extras,
@@ -161,7 +161,7 @@ fun AppCompatActivity.navigateToActivityWithParams(
     )
 }
 
-fun AppCompatActivity.navigateToActivityWithFlagsWithAnimation(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     flags: Int,
@@ -173,13 +173,13 @@ fun AppCompatActivity.navigateToActivityWithFlagsWithAnimation(
     overridePendingTransition(enterAnim, exitAnim)
 }
 
-fun AppCompatActivity.navigateToActivityClearingTaskWithAnimation(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     @AnimRes enterAnim: Int,
     @AnimRes exitAnim: Int
 ) {
-    navigateToActivityWithFlagsWithAnimation(
+    navigateToActivity(
         hasToFinish,
         targetActivity,
         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK,
@@ -188,12 +188,12 @@ fun AppCompatActivity.navigateToActivityClearingTaskWithAnimation(
     )
 }
 
-fun AppCompatActivity.navigateToActivityWithFlags(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     flags: Int
 ) {
-    navigateToActivityWithFlagsWithAnimation(
+    navigateToActivity(
         hasToFinish,
         targetActivity,
         flags,
@@ -202,15 +202,18 @@ fun AppCompatActivity.navigateToActivityWithFlags(
     )
 }
 
-fun AppCompatActivity.navigateToActivityClearingTask(hasToFinish: Boolean, targetActivity: Class<*>) {
-    navigateToActivityWithFlags(
+fun AppCompatActivity.navigateToActivityClearingTask(
+    hasToFinish: Boolean,
+    targetActivity: Class<*>
+) {
+    navigateToActivity(
         hasToFinish,
         targetActivity,
         Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
     )
 }
 
-fun AppCompatActivity.goToActivityWithFlagsWithParamsWithAnimation(
+fun AppCompatActivity.goToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     flags: Int,

@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.math.BigInteger
 import java.net.InetAddress
 import java.net.NetworkInterface
-import java.util.*
+import java.util.Collections
 
 fun Context.wifiIP(): String {
     val ipAddress = getWifiManager().connectionInfo.ipAddress
