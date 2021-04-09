@@ -11,7 +11,9 @@ import android.net.Uri
 import android.os.Build
 import android.os.VibrationEffect
 import android.os.Vibrator
+import android.util.AttributeSet
 import androidx.annotation.DrawableRes
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 
@@ -65,4 +67,15 @@ fun Context.vibrate(duration: Long = 500L) {
         @Suppress("DEPRECATION")
         vib.vibrate(duration)
     }
+}
+
+internal fun wrapContextFromTheme(
+    context: Context,
+    attributeSet: AttributeSet?,
+    styleAttr: Int
+): Context {
+    val typedArray = context.obtainStyledAttributes(attributeSet, intArrayOf(styleAttr), 0, 0)
+    val themeId = typedArray.getResourceId(0, 0)
+    typedArray.recycle()
+    return ContextThemeWrapper(context, themeId)
 }

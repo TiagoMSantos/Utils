@@ -14,55 +14,58 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 
-@BindingAdapter("srcCompat")
-fun ImageView.setDrawable(drawable: Drawable? = null) {
-    setImageDrawable(drawable)
-}
+object ImageViewBindingAdapter {
 
-@BindingAdapter("srcCompat")
-fun ImageView.setDrawableRes(@DrawableRes drawable: Int? = null) {
-    setImageResource(drawable ?: 0)
-}
+    @BindingAdapter("srcCompat")
+    fun ImageView.setDrawable(drawable: Drawable? = null) {
+        setImageDrawable(drawable)
+    }
 
-@BindingAdapter("srcCompat")
-fun ImageView.setBitmap(bitmap: Bitmap? = null) {
-    setImageBitmap(bitmap)
-}
+    @BindingAdapter("srcCompat")
+    fun ImageView.setDrawableRes(@DrawableRes drawable: Int? = null) {
+        setImageResource(drawable ?: 0)
+    }
 
-@BindingAdapter("tintRes")
-fun ImageView.setTintRes(@ColorRes color: Int) {
-    setTint(ContextCompat.getColor(context, color))
-}
+    @BindingAdapter("srcCompat")
+    fun ImageView.setBitmap(bitmap: Bitmap? = null) {
+        setImageBitmap(bitmap)
+    }
 
-@BindingAdapter("tintInt")
-fun ImageView.setTintInt(@ColorInt color: Int) {
-    setTint(color)
-}
+    @BindingAdapter("tintRes")
+    fun ImageView.setTintRes(@ColorRes color: Int) {
+        setTint(ContextCompat.getColor(context, color))
+    }
 
-@BindingAdapter("srcCompat")
-fun ImageView.setSrcCompatDrawable(@Nullable drawable: Drawable) {
-    setDrawable(drawable)
-}
+    @BindingAdapter("tintInt")
+    fun ImageView.setTintInt(@ColorInt color: Int) {
+        setTint(color)
+    }
 
-private fun ImageView.setTint(
-    @ColorInt color: Int,
-    mode: PorterDuff.Mode = PorterDuff.Mode.SRC_ATOP
-) {
-    setColorFilter(color, mode)
-}
+    @BindingAdapter("srcCompat")
+    fun ImageView.setSrcCompatDrawable(@Nullable drawable: Drawable) {
+        setDrawable(drawable)
+    }
 
-private fun ImageView.load(url: String?, options: RequestOptions) {
-    Glide.with(context)
-        .load(url)
-        .apply(options)
-        .transition(DrawableTransitionOptions.withCrossFade())
-        .into(this)
-}
+    private fun ImageView.setTint(
+        @ColorInt color: Int,
+        mode: PorterDuff.Mode = PorterDuff.Mode.SRC_ATOP
+    ) {
+        setColorFilter(color, mode)
+    }
 
-private fun ImageView.load(imageByteArray: ByteArray?, options: RequestOptions) {
-    Glide.with(context)
-        .load(imageByteArray)
-        .apply(options)
-        .transition(DrawableTransitionOptions.withCrossFade())
-        .into(this)
+    private fun ImageView.load(url: String?, options: RequestOptions) {
+        Glide.with(context)
+            .load(url)
+            .apply(options)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
+
+    private fun ImageView.load(imageByteArray: ByteArray?, options: RequestOptions) {
+        Glide.with(context)
+            .load(imageByteArray)
+            .apply(options)
+            .transition(DrawableTransitionOptions.withCrossFade())
+            .into(this)
+    }
 }
