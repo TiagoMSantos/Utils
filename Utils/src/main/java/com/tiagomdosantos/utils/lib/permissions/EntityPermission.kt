@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.tiagomdosantos.utils.lib.views.activities.PermissionsActivity
 
 class EntityPermission(private val activity: Activity) {
@@ -96,7 +95,8 @@ class EntityPermission(private val activity: Activity) {
                         ?.let { append("$it, ") }
                 }
             } catch (e: PackageManager.NameNotFoundException) {
-                FirebaseCrashlytics.getInstance().recordException(e)
+                // TODO:
+//                FirebaseCrashlytics.getInstance().recordException(e)
             }
         }
 
