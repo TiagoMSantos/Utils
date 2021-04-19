@@ -4,6 +4,7 @@ buildscript {
             'minSdk'                : 24,
             'targetSdk'             : 30,
             'code'                  : 1,
+            'name'                  : '0.1.0',
             'apache'                : '3.10',
             'appcompat'             : '1.2.0',
             'biometricPrompt'       : '1.1.0',

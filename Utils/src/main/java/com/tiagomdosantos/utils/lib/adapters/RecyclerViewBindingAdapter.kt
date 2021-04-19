@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 import com.tiagomdosantos.utils.lib.base.BaseViewHolder
 
-open class RecyclerBindingAdapter<T> : RecyclerView.Adapter<RecyclerBindingAdapter.BindingHolder> {
+open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerViewBindingAdapter.BindingHolder> {
     private var headerLayout: Int = 0
     private var itemLayout: Int = 0
     private var footerLayout: Int = 0
@@ -125,7 +125,7 @@ open class RecyclerBindingAdapter<T> : RecyclerView.Adapter<RecyclerBindingAdapt
         return BindingHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerBindingAdapter.BindingHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerViewBindingAdapter.BindingHolder, position: Int) {
 
         if (position == 0 && isHeaderAdded) {
             holder.binding!!.setVariable(headerVarId, headerViewHolder)

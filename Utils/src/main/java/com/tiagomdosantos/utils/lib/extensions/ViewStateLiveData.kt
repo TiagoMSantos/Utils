@@ -11,10 +11,10 @@ fun MutableLiveData<ViewState>.loaded() {
     this.value = ViewState.LOADED
 }
 
-fun MutableLiveData<ViewState>.error() {
-    this.value = ViewState.ERROR
+fun MutableLiveData<ViewState>.failed() {
+    this.value = ViewState.FAILED
 }
 
-fun MutableLiveData<ViewState>.actionError() {
-    this.value = ViewState.ACTION_ERROR
+fun MutableLiveData<ViewState>.actionFailed() {
+    this.value = ViewState.ACTION_FAILED
 }

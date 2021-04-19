@@ -6,7 +6,7 @@ fun TextView.hideValue() {
     this.text = "*****"
 }
 
-fun TextView.drawableEnd(layoutId: Int) {
+infix fun TextView.addDrawableEnd(layoutId: Int) {
     this.setCompoundDrawablesWithIntrinsicBounds(
         0,
         0,
