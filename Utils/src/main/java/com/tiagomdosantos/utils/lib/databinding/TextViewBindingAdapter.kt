@@ -4,17 +4,18 @@ import android.widget.TextView
 import androidx.annotation.FontRes
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
-import java.util.*
+import com.tiagomdosantos.utils.lib.extensions.getLocaleUS
+import java.util.Locale
 
 object TextViewBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("textCapitalized")
-    fun TextView.setCapitalizedText(textToCapitalize: String) {
+    fun TextView.setCapitalizedText(textToCapitalize: String, locale: Locale = getLocaleUS()) {
         this.text = takeIf { textToCapitalize.isNotBlank() }?.run {
             textToCapitalize.substring(0, 1)
-                .toUpperCase(Locale.ROOT) + textToCapitalize.toLowerCase(
-                Locale.ROOT
+                .toUpperCase(locale) + textToCapitalize.toLowerCase(
+                locale
             ).substring(1)
         }
     }

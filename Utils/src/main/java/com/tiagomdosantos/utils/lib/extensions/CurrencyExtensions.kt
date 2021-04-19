@@ -2,45 +2,44 @@ package com.tiagomdosantos.utils.lib.extensions
 
 import java.math.BigDecimal
 
-fun formatCurrency(value: String): String {
-    return formatCurrency(BigDecimal(value.replace(".", "").replace(",", ".")))
+fun String.formatCurrency(): String {
+    return BigDecimal(replace(".", "").replace(",", ".")).formatCurrency()
 }
 
-fun formatCurrency(value: Float): String {
-    return formatCurrency(BigDecimal.valueOf(value.toDouble()))
+fun Float.formatCurrency(): String {
+    return BigDecimal.valueOf(this.toDouble()).formatCurrency()
 }
 
-fun formatCurrency(value: Double): String {
-    return formatCurrency(BigDecimal.valueOf(value))
+fun Double.formatCurrency(): String {
+    return BigDecimal.valueOf(this).formatCurrency()
 }
 
-fun formatCurrency(value: BigDecimal): String {
+fun BigDecimal.formatCurrency(): String {
     return try {
-        getDecimalFormatWithCurrency().format(value)
+        getDecimalFormatWithCurrency().format(this)
     } catch (e: Exception) {
         return ""
     }
 }
 
-fun formatCurrencyWithoutMonetaryFormat(value: Double): String {
-    return getDecimalFormat().format(value)
+fun Double.formatCurrencyWithoutMonetaryFormat(): String {
+    return getDecimalFormat().format(this)
 }
 
-fun formatCurrencyWithoutMonetaryFormat(value: String): String? {
-    if (isNotNullOrEmpty(value) || !isNumeric(value))
-        return value
+fun String.formatCurrencyWithoutMonetaryFormat(): String? {
+    if (isNotNullOrEmpty(this) || this.isNumeric().not())
+        return this
 
-    return getDecimalFormat().format(value.replace(".", "").replace(",", ".").replace("R$ ", ""))
+    return getDecimalFormat().format(this.replace(".", "").replace(",", ".").replace("R$ ", ""))
 }
 
-fun getCustomizedBalance(balance: String): String {
-    return StringBuilder(balance)
-        .insert(balance.length - 3, "#")
-        .insert(balance.length + 1, "#")
+fun String.getCustomizedBalance(): String {
+    return StringBuilder(this)
+        .insert(this.length - 3, "#")
+        .insert(this.length + 1, "#")
         .toString()
 }
 
-fun getCustomizedBalance(value: Double): String {
-    val balance: String = formatCurrency(value).replace(" ", "")
-    return getCustomizedBalance(balance)
+fun Double.getCustomizedBalance(): String {
+    return this.formatCurrency().replace(" ", "").getCustomizedBalance()
 }

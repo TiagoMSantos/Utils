@@ -23,11 +23,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.tiagomdosantos.utils.lib.R
 
-fun AppCompatActivity.bindingContentView(layout: Int): ViewDataBinding {
-    return bindingContentView<ViewDataBinding>(layout)
+infix fun AppCompatActivity.bindLayout(layout: Int): ViewDataBinding {
+    return this.bindLayout<ViewDataBinding>(layout)
 }
 
-fun <T> AppCompatActivity.bindingContentView(layout: Int): T {
+infix fun <T> AppCompatActivity.bindLayout(layout: Int): T {
     return DataBindingUtil.setContentView<ViewDataBinding>(this, layout)
         .also { it.lifecycleOwner = this } as T
 }
@@ -102,7 +102,7 @@ fun AppCompatActivity.hasFlash(): Boolean {
     return hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)
 }
 
-fun AppCompatActivity.hasSystemFeature(feature: String): Boolean {
+infix fun AppCompatActivity.hasSystemFeature(feature: String): Boolean {
     return packageManager.hasSystemFeature(feature)
 }
 
@@ -111,7 +111,7 @@ fun AppCompatActivity.navigateToActivity(hasToFinish: Boolean, targetActivity: C
     onFinish(hasToFinish)
 }
 
-fun AppCompatActivity.navigateToActivityAndClearTaskWithParams(
+fun AppCompatActivity.navigateToActivity(
     hasToFinish: Boolean,
     targetActivity: Class<*>,
     extras: Bundle

@@ -1,12 +1,12 @@
 package com.tiagomdosantos.utils.lib.extensions
 
-fun isNumeric(charSequence: CharSequence): Boolean {
-    if (charSequence.isEmpty()) {
+fun CharSequence.isNumeric(): Boolean {
+    if (this.isEmpty()) {
         return false
     }
-    val size = charSequence.length
+    val size = this.length
     for (i in 0 until size) {
-        if (!Character.isDigit(charSequence[i])) {
+        if (!Character.isDigit(this[i])) {
             return false
         }
     }

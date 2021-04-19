@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 
-fun <T> Flow<T>.debounce(waitMillis: Long = 1000L) = flow {
+infix fun <T> Flow<T>.debounce(waitMillis: Long) = flow {
     coroutineScope {
         val context = coroutineContext
         var delayPost: Deferred<Unit>? = null
@@ -25,3 +25,5 @@ fun <T> Flow<T>.debounce(waitMillis: Long = 1000L) = flow {
         }
     }
 }
+
+fun <T> Flow<T>.debounce() = this.debounce(waitMillis = 1000L)
