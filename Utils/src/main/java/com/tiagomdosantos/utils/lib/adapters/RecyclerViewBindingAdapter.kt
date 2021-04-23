@@ -125,24 +125,27 @@ open class RecyclerViewBindingAdapter<T> : RecyclerView.Adapter<RecyclerViewBind
         return BindingHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerViewBindingAdapter.BindingHolder, position: Int) {
+    override fun onBindViewHolder(holder: BindingHolder, position: Int) {
+        holder.binding?.let { binding ->
+            when {
+                position == 0 && isHeaderAdded -> {
+                    binding.setVariable(headerVarId, headerViewHolder)
+                    binding.executePendingBindings()
+                }
+                position == itemCount - 1 && isFooterAdded -> {
+                    binding.setVariable(footerVarId, footerViewHolder)
+                    binding.executePendingBindings()
+                }
+                else -> {
+                    val item = items[position]
+                    binding.root.setOnClickListener { view ->
+                        onItemClickListener?.onItemClick(holder.adapterPosition, view, item)
+                    }
 
-        if (position == 0 && isHeaderAdded) {
-            holder.binding!!.setVariable(headerVarId, headerViewHolder)
-            holder.binding.executePendingBindings()
-        } else if (position == itemCount - 1 && isFooterAdded) {
-            holder.binding!!.setVariable(footerVarId, footerViewHolder)
-            holder.binding.executePendingBindings()
-        } else {
-
-            val item = items[position]
-
-            holder.binding!!.root.setOnClickListener { view ->
-                onItemClickListener?.onItemClick(holder.adapterPosition, view, item)
+                    binding.setVariable(itemVarId, item)
+                    binding.executePendingBindings()
+                }
             }
-
-            holder.binding.setVariable(itemVarId, item)
-            holder.binding.executePendingBindings()
         }
     }
 
